@@ -1,7 +1,6 @@
 import React from "react";
 
 const Table = ({ data }) => {
-  console.log("da data", data);
 
   const dateformat = (dateString) => {
     const date = new Date(dateString);
