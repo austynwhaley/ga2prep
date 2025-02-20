@@ -1,6 +1,4 @@
-// create connectiuon to db in this file
 require('dotenv').config();
-
 const { Client } = require('pg');
 
 const client = new Client({
@@ -13,10 +11,16 @@ const client = new Client({
 
 client.connect((err) => {
     if (err) {
-        console.log('err connecting to db', err.stack);
+        console.error('Error connecting to the database', err.stack);
     } else {
-        console.log('connected to db');
+        console.log('Connected to the database');
     }
-})
+});
+
+process.on('SIGINT', async () => {
+    await client.end();
+    console.log('Database connection closed');
+    process.exit(0);
+});
 
 module.exports = client;
