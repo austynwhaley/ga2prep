@@ -1,13 +1,14 @@
 // create connectiuon to db in this file
+require('dotenv').config();
 
 const { Client } = require('pg');
 
 const client = new Client({
-    host: 'localhost',
-    port: 5432,
-    user: 'postgres',
-    password: '5424',
-    database:'insurance_db'
+    user: process.env.DB_USER,
+    host: process.env.DB_HOST,
+    database: process.env.DB_NAME,
+    password: process.env.DB_PASSWORD,
+    port: process.env.DB_PORT,
 });
 
 client.connect((err) => {
